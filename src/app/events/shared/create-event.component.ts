@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgModelGroup, Validators } from '@angular/forms';
 import { IEvent } from './event.model';
 import { Router } from '@angular/router';
+import { EventService } from './event.service';
 
 @Component({
   templateUrl: './create-event.component.html',
@@ -16,46 +17,44 @@ import { Router } from '@angular/router';
 export class CreateEventComponent{
   isDirty: boolean = false
   eventForm!: FormGroup
-  name!: FormControl
-  date!: FormControl
-  time!: FormControl
-  price!: FormControl
-  imageUrl!: FormControl
-  address!: FormControl
-  city!: FormControl
-  country!: FormControl
-  onlineUrl!: FormControl
   newEvent!: IEvent
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private eventService:EventService){}
 
   ngOnInit(): void{
-    this.name = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z].*')])
-    this.date = new FormControl('', Validators.required)
-    this.time = new FormControl('', Validators.required)
-    this.price = new FormControl('', Validators.required)
-    this.imageUrl = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z].*')])
-    this.address = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z].*')]);
-    this.city = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z].*')]);
-    this.country = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z].*')]);
-    this.onlineUrl = new FormControl('', Validators.required);
-
+    this.newEvent = {
+      id: 998,
+      sessions: [],
+      name: 'Ng Spectacular',
+      date: new Date('08/08/2020'),
+      time: '10am',
+      price: 100.00,
+      location: {
+        address: '456 Happy St',
+        city: 'FeliCity',
+        country: 'Angularistan'
+      },
+      onlineUrl: 'http://ngSpectacular.com',
+      imageUrl: 'https://colinstodd.com/images/posts/angular.png'
+    }
     this.eventForm = new FormGroup({
-      name: this.name,
-      date: this.date,
-      time: this.time,
-      price: this.price,
-      imageUrl: this.imageUrl,
-      address: this.address,
-      city: this.city,
-      country: this.country,
-      onlineUrl: this.onlineUrl,
+      name: new FormControl(this.newEvent.name, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      date: new FormControl(this.newEvent.date.getDate, Validators.required),
+      time: new FormControl(this.newEvent.time, Validators.required),
+      price: new FormControl(this.newEvent.price, Validators.required),
+      imageUrl: new FormControl(this.newEvent.imageUrl, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      address: new FormControl(this.newEvent.location?.address, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      city: new FormControl(this.newEvent.location?.city, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      country: new FormControl(this.newEvent.location?.country, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      onlineUrl: new FormControl(this.newEvent.onlineUrl, Validators.required)
     })
   }
 
-  createEvent(newEvent: IEvent): void {
-    console.log("event created")
-
+  createEvent(eventForm: FormGroup): void {
+    console.log(eventForm.value)
+    this.eventService.saveEvent(eventForm.value)
+    this.isDirty = false
+    this.router.navigate(['/events'])
   }
 
 
@@ -68,6 +67,11 @@ export class CreateEventComponent{
   pattern(field: string){
     return this.eventForm.controls[field].hasError('pattern')
   }
+
+  isValid(field: string){
+    return this.eventForm.controls[field].valid
+  }
+
 
   cancel(){
     this.router.navigate(['/events']);

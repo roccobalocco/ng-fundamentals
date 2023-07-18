@@ -1,10 +1,7 @@
 import { Routes } from '@angular/router'
-import { EventDetailComponent } from "./events/event-detail/event-detail.component";
-import { EventsListComponent } from "./events/events-list.component";
-import { CreateEventComponent } from './events/shared/create-event.component';
 import { Error404Component } from './error/404-component';
 import { EventRouteActivator } from './events/event-detail/event-route.activator.service';
-import { EventListResolverService } from './events/shared/event-list-resolver.service';
+import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent } from './events/index';
 
 export const appRoutes: Routes = [
   //importante l'ordine delle routes
@@ -21,5 +18,6 @@ export const appRoutes: Routes = [
     // quando una rout inizia con user, carica il modulo user da questo percorso
     loadChildren: () => import('./user/user.module').then(m=> m.UserModule)
   },
+  { path: 'events/session/new', component: CreateSessionComponent},
   { path: '', redirectTo: '/events', pathMatch: 'full' }
 ]

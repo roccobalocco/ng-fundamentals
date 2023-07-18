@@ -5,12 +5,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { EventsAppComponent } from './events-app.component';
 import { EventService } from './events/shared/event.service';
 import { ToastrService } from './common/toastr.service';
-import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { Error404Component } from './error/404-component';
 import { EventRouteActivator } from './events/event-detail/event-route.activator.service';
-import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent } from './events/index';
+import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent } from './events/index';
 import { AuthService} from './user/auth.service';
 import { LoginComponent } from './user/login.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -24,7 +23,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     EventDetailComponent,
     CreateEventComponent,
     Error404Component,
-    LoginComponent
+    LoginComponent,
+    CreateSessionComponent,
   ],
   imports: [
     BrowserModule,
