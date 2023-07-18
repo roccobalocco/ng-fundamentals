@@ -1,0 +1,37 @@
+<div class="well hoverwell thumbnail">
+  <h2>{{event?.name}}</h2>
+  <div>Date: {{event?.date}}</div>
+  <div
+    [ngClass]="{green: event?.time === '8:00 am',
+    bold: event?.time === '8:00 am' || event?.time === '10:00 am',
+    red: event?.time === '10:00 am',
+    italic: event?.time === '9:00 am', black: event?.time === '9:00 am'}"
+    [ngSwitch]="event?.time">
+    <!-- Se event.time è 8 di mattina allora aggiungi la classe green al div-->
+    <span *ngSwitchCase="'8:00 am'">Time: {{event?.time}} (Early Start)</span>
+    <span *ngSwitchCase="'10:00 am'">Time: {{event?.time}} (Late Start)</span>
+    <span *ngSwitchDefault>Time: {{event?.time}} (Normal Start)</span>
+  </div>
+  <div [ngStyle]="getStartPriceStyle()">
+    Price: {{event?.price | currency : "EUR" }}
+  </div>
+  <!--
+    <div *ngIf="event?.location">
+      <span>Location: {{event?.location.address}}</span>
+      <span class="pad-left">{{event?.location.city}}, {{event?.location.country}}</span>
+    </div>
+  -->
+  <div [hidden]="!event?.location">
+    <span>Location: {{event?.location?.address}}</span>
+    <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+  </div>
+  <div *ngIf="event?.onlineUrl">
+    Online URL: {{event?.onlineUrl}}
+  </div>
+  <div *ngIf="event?.imageUrl">
+    <img style="max-height: 60px;" [src]="event?.imageUrl"/>
+  </div>
+  <br>
+  <button class="btn btn-outline-dark" (click)="handleClickMe()">Click Me!</button>
+  <br><br>
+</div>

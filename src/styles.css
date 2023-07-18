@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+body{
+  background-color: #FCFBF4;
+}
+
+ul > li {
+  padding: 10px, 10px, 10px, 10px;
+}
+
+.hoverwell:hover {
+  background-color: lightgray !important;
+  cursor: pointer;
+}
+
+.container {
+  padding-top: 10px;
+}
+
+.pointable {
+  cursor: pointer;
+}
+
+button {
+  color: #555;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.toast-success {
+  background-color: black;
+  color: whitesmoke !important;
+}
+.toast-error {
+  background-color: #bd362f;
+}
+.toast-info {
+  background-color: grey;
+  color: black !important;
+}
+.toast-warning {
+  background-color: #f89406;
+}
