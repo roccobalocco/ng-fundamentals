@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IEvent } from '../shared/event.model';
 
 @Component({
   selector: 'app-event-thumbnail',
@@ -15,13 +16,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   `]
 })
 export class EventThumbnailComponent {
-  @Input() event: any //sarà passato da un altro componente
+  @Input() event: IEvent | any //sarà passato da un altro componente
   @Output() eventClick = new EventEmitter()
   someProperty: string = 'some value in child component used as a variable'
-
-  handleClickMe(){
-    console.log(this.event.name);
-  }
 
   getStartPriceStyle(): any{
     //funzione atta a sostiuire la roba dentro l'espressione di ngClass

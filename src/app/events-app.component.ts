@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'events-app-root',
   template: `
-    <welcome-app-component></welcome-app-component>
-    <events-list></events-list>
+    <router-outlet></router-outlet>
   `,
 })
 export class EventsAppComponent {
