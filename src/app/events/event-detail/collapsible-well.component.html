@@ -1,0 +1,11 @@
+<div
+ (click)="toggleContent()" class="well pointable">
+  <h4>
+    <ng-content select="[well-title]">
+
+    </ng-content>
+  </h4>
+  <ng-content *ngIf="visible" select="[well-body]">
+    <!-- Fa si che ció che é stato messo tra il tag di collapsible-well stia qui -->
+  </ng-content>
+</div>

@@ -1,5 +1,5 @@
 import { window } from 'rxjs';
-import { NgModule } from '@angular/core';
+import { NgModule, PipeTransform } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EventsAppComponent } from './events-app.component';
@@ -9,10 +9,11 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { Error404Component } from './error/404-component';
 import { EventRouteActivator } from './events/event-detail/event-route.activator.service';
-import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent } from './events/index';
+import { CreateEventComponent, DurationPipe, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent, SessionListComponent} from './events/index';
 import { AuthService} from './user/auth.service';
 import { LoginComponent } from './user/login.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { CollapsibleWellComponent } from './events/event-detail/collapsible-well.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,15 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     Error404Component,
     LoginComponent,
     CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [EventService,
     ToastrService,
@@ -39,7 +43,6 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
     }, //forma prolissa, ma utile per funzioni in route
-
     EventListResolverService,
     AuthService
   ],

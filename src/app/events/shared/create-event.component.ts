@@ -7,11 +7,11 @@ import { EventService } from './event.service';
 @Component({
   templateUrl: './create-event.component.html',
   styles: [`
-  em {float: right; color: #E05C65; padding-left: 10px;}
-  .error ::-webkit-input-placeholder {color: red;}
-  .error ::-moz-placeholder {color: red;}
-  .error :-moz-placeholder {color: red;}
-  .error :ms-input-placeholder {color: red;}
+      em {float: right; color: #E05C65; padding-left: 10px;}
+      .error ::-webkit-input-placeholder {color: red;}
+      .error ::-moz-placeholder {color: red;}
+      .error :-moz-placeholder {color: red;}
+      .error :ms-input-placeholder {color: red;}
   `]
 })
 export class CreateEventComponent{
@@ -53,7 +53,6 @@ export class CreateEventComponent{
   createEvent(eventForm: FormGroup): void {
     console.log(eventForm.value)
     this.eventService.saveEvent(eventForm.value)
-    this.isDirty = false
     this.router.navigate(['/events'])
   }
 

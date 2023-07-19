@@ -3,15 +3,15 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2>{{event?.name}} </h2>
+      <h2>{{event?.name | uppercase}} </h2>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Date:</strong> {{event?.date}}</div>
+      <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
       <div><strong>Time:</strong> {{event?.time}}</div>
-      <div><strong>Price:</strong> ${{event?.price}}</div>
+      <div><strong>Price:</strong> {{event?.price | currency: 'EUR'}}</div>
     </div>
     <div class="col-md-6" *ngIf="event?.location">
       <address>
@@ -21,4 +21,50 @@
       </address>
     </div>
   </div>
+
+  <hr>
+
+  <div class="row">
+    <div class ="col-md-2">
+      <h3 style="margin:0">Sessions:</h3>
+      <br>
+    </div>
+    <div class="col-md-4">
+      <!-- filtering -->
+      <i class="fa fa-filter" style="min-width:15px;"></i>
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary"
+        [class.active]="filterBy === 'all'"
+        (click)="showSessions('all')">All</button>
+        <button class="btn btn-outline-secondary"
+        [class.active]="filterBy === 'beginner'"
+        (click)="showSessions('beginner')">Beginner</button>
+        <button class="btn btn-outline-secondary"
+        [class.active]="filterBy === 'intermediate'"
+        (click)="showSessions('intermediate')">Intermediate</button>
+        <button class="btn btn-outline-secondary"
+        [class.active]="filterBy === 'advanced'"
+        (click)="showSessions('advanced')">Advanced</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <!-- sorting -->
+      <i class="fa fa-sort" style="min-width:15px;"></i>
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary"
+        [class.active]="sortBy === 'name'"
+        (click)="sortSessions('name')">Name</button>
+        <button class="btn btn-outline-secondary"
+        [class.active]="sortBy === 'votes'"
+        (click)="sortSessions('votes')">Votes</button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <a *ngIf="!addMode" (click)="addSession()" class="btn btn-outline-dark">Add Session</a>
+      <a *ngIf="addMode" (click)="addSession()" class="btn btn-outline-dark">View Sessions</a>
+    </div>
+  </div>
+  <hr class="hr hr-blurry" />
+  <session-list *ngIf="!addMode" [sessions]="event!.sessions" [filterBy]="filterBy" [sortBy]="sortBy"></session-list>
+  <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSessions)="cancelAddSessions()"></create-session>
 </div>

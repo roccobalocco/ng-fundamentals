@@ -1,14 +1,20 @@
+#welcome-search{
+  margin-left:5px;
+  margin-bottom:2px;
+}
 
 ul {
   display: flex;
   list-style-type: none;
+  margin-left: 10px;
+}
+
+ul > li {
+  padding: 10px, 10px, 10px, 10px;
 }
 
 body{
   background-color: #FCFBF4;
-}
-ul > li {
-  padding: 10px, 10px, 10px, 10px;
 }
 
 .hoverwell:hover {
@@ -27,10 +33,15 @@ ul > li {
 
 button {
   color: #555;
+  margin-bottom:2px;
 }
 
 [hidden] {
   display: none !important;
+}
+
+.btn{
+  margin-left: 5px;
 }
 
 .toast-success {
@@ -46,4 +57,24 @@ button {
 }
 .toast-warning {
   background-color: #f89406;
+}
+
+.nav-item .dropdown-menu {
+  background: #212529;
+  border-color: #343a40;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+.nav-item .dropdown-item {
+  color: lightgray;
+}
+
+.dropdown-divider {
+  background-color: #343a40;
+}
+
+.nav-item .dropdown-item:hover {
+  color: whitesmoke;
+  background-color: #343a40;
 }
