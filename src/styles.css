@@ -1,80 +1,66 @@
-#welcome-search{
-  margin-left:5px;
-  margin-bottom:2px;
+#welcome-search {
+  margin-left: 5px;
+  margin-bottom: 2px
 }
-
 ul {
   display: flex;
   list-style-type: none;
-  margin-left: 10px;
+  margin-left: 10px
 }
-
 ul > li {
-  padding: 10px, 10px, 10px, 10px;
+  padding: 10px,10px,10px,10px
 }
-
-body{
-  background-color: #FCFBF4;
+body {
+  background-color: #fcfbf4
 }
-
 .hoverwell:hover {
-  background-color: lightgray !important;
-  cursor: pointer;
+  background-color: #d3d3d3!important;
+  cursor: pointer
 }
-
 .container {
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 10px
 }
-
 .pointable {
-  cursor: pointer;
+  cursor: pointer
 }
-
 button {
   color: #555;
-  margin-bottom:2px;
+  margin-bottom: 2px
 }
-
 [hidden] {
-  display: none !important;
+  display: none!important
 }
-
-.btn{
-  margin-left: 5px;
+.btn {
+  margin-left: 5px
 }
-
 .toast-success {
-  background-color: black;
-  color: whitesmoke !important;
+  background-color: #000;
+  color: #f5f5f5!important
 }
 .toast-error {
-  background-color: #bd362f;
+  background-color: #bd362f
 }
 .toast-info {
   background-color: grey;
-  color: black !important;
+  color: #000!important
 }
 .toast-warning {
-  background-color: #f89406;
+  background-color: #f89406
 }
-
 .nav-item .dropdown-menu {
   background: #212529;
   border-color: #343a40;
   margin-right: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 5px
 }
-
 .nav-item .dropdown-item {
-  color: lightgray;
+  color: #d3d3d3
 }
-
 .dropdown-divider {
-  background-color: #343a40;
+  background-color: #343a40
 }
-
 .nav-item .dropdown-item:hover {
-  color: whitesmoke;
-  background-color: #343a40;
+  color: #f5f5f5;
+  background-color: #343a40
 }
