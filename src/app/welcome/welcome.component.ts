@@ -12,17 +12,16 @@ import { EventService } from '../events/shared/event.service';
 })
 export class WelcomeComponent {
   searchTerm?: string;
-  foundSessions?: ISession[]
+  foundSessions?: any[]
 
-  constructor(public authService: AuthService, private eventService: EventService) { }
+  constructor(public authService: AuthService, private eventService: EventService) {
+  }
 
   searchSessions(searchTerm: string){
-    if(searchTerm != undefined && searchTerm != null && searchTerm != "")
-      this.eventService.searchSessions(searchTerm).subscribe(
-        sessions => {
-          this.foundSessions = sessions;
-          console.log(this.foundSessions);
-        }
-      );
+    this.eventService.searchSessions(searchTerm).subscribe(
+      sessions => {
+        this.foundSessions = sessions;
+      }
+    );
   }
 }

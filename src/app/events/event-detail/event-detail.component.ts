@@ -13,7 +13,6 @@ import { IEvent, ISession } from '../shared/event.model';
 
 export class EventDetailComponent implements OnInit {
   event: IEvent | undefined
-  id!: number
   addMode = false
   filterBy: string = 'all'
   sortBy: string = 'votes'
@@ -22,8 +21,10 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit(){
-    this.id = Number(this.route.snapshot.params['id'])
-    this.event = this.eventService.getEvent(this.id)
+    this.route.params.forEach((params) => {
+      this.event = this.eventService.getEvent(+params['id']) //shorthand conversion
+      this.addMode = false
+    })
   }
 
   addSession() {

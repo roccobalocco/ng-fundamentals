@@ -1,0 +1,13 @@
+<div class="votingWidgetContainer pointable" (click)="onClick()">
+  <div class="well votingWidget">
+
+    <i class="fa fa-heart" [style.color]="getColor()" [style.display]="validVote()"></i>
+    <div class="badge badge-inverse votingCount">
+      <div style="margin-left:5px">
+        {{count}}
+        <br>
+        <i class="fa fa-gratipay"></i>
+      </div>
+    </div>
+  </div>
+</div>

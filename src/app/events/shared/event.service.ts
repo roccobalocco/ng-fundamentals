@@ -26,19 +26,30 @@ export class EventService{
     events.push(event)
   }
 
-  searchSessions(searchTerm: string): Observable<ISession[]> {
-    searchTerm = searchTerm.toLocaleLowerCase()
+  searchSessions(searchTerm: string): Observable<any[]> {
     var results: ISession[] = []
 
-    events.forEach(event => {
-      var matchingSessions = event.sessions.filter(session =>
-        session.name.toLocaleLowerCase().indexOf(searchTerm) > -1)
-      matchingSessions = matchingSessions.map((session: any) => {
-        session.eventid = event.id
-        return session
+    if (searchTerm == "" || searchTerm === undefined || searchTerm == null){
+      events.forEach(event => {
+        results  = results.concat(event.sessions.map((session: any) => {
+          session.eventId = event.id
+          return session
+        }))
       })
-      results = results.concat(matchingSessions)
-    })
+    }else{
+      searchTerm = searchTerm.toLocaleLowerCase()
+
+      events.forEach(event => {
+        var matchingSessions = event.sessions.filter(session =>
+          session.name.toLocaleLowerCase().indexOf(searchTerm) > -1)
+        matchingSessions = matchingSessions.map((session: any) => {
+          session.eventId = event.id
+          return session
+        })
+
+        results = results.concat(matchingSessions)
+      })
+    }
 
     var emitter = new EventEmitter(true)
     setTimeout(() => {

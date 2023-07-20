@@ -40,10 +40,10 @@
       </li>
     </ul>
     <div id="welcome-search" class="input-group rounded" style="max-width:400px">
-      <form id="searchForm" name="searchForm" class="input-group-text" (ngSubmit)="searchSessions(searchTerm!)">
+      <form id="searchForm" name="searchForm" class="input-group-text bg-dark" style="border: none" (ngSubmit)="searchSessions(searchTerm!)">
         <input type="search" [(ngModel)]="searchTerm" name="searchTerm"
           style="max-width: 250px; " class="form-control rounded" placeholder="Search Sessions"/>
-        <button  id="search-addon">
+        <button id="search-addon" class="rounded" modal-trigger="searchResults">
           <i class="fa fa-search" aria-hidden="true"></i>
         </button>
       </form>
@@ -51,8 +51,7 @@
     <div class="navbar-header navbar-right" style="margin-right:10px">
       <ul class="nav navbar-nav">
         <li class="nav-item" *ngIf="authService.isAuthenticated()">
-          <a class="nav-link"
-            [routerLink]="['/user/profile']"
+          <a class="nav-link" [routerLink]="['/user/profile']"
             routerLinkActive="active"> Welcome {{authService.currentUser?.firstName}} </a>
         </li>
         <li class="nav-item" *ngIf="!authService.isAuthenticated()">
@@ -68,3 +67,12 @@
   </div>
 </nav>
 <br>
+
+<simple-modal title="Matching Sessions" elementId="searchResults" closeOnBodyClick="true">
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let session of foundSessions"
+    [routerLink]="['/events', session.eventId]">
+      {{session.name}}
+    </a>
+  </div>
+</simple-modal>
