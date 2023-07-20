@@ -39,11 +39,11 @@ export class CreateEventComponent{
     }
     this.eventForm = new FormGroup({
       name: new FormControl(this.newEvent.name, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
-      date: new FormControl(this.newEvent.date.getDate, Validators.required),
+      date: new FormControl(this.newEvent.date.toLocaleDateString(), Validators.required),
       time: new FormControl(this.newEvent.time, Validators.required),
       price: new FormControl(this.newEvent.price, Validators.required),
       imageUrl: new FormControl(this.newEvent.imageUrl, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
-      address: new FormControl(this.newEvent.location?.address, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
+      address: new FormControl(this.newEvent.location?.address, [Validators.required]),
       city: new FormControl(this.newEvent.location?.city, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
       country: new FormControl(this.newEvent.location?.country, [Validators.required, Validators.pattern('[a-zA-Z].*')]),
       onlineUrl: new FormControl(this.newEvent.onlineUrl, Validators.required)
@@ -51,16 +51,22 @@ export class CreateEventComponent{
   }
 
   createEvent(eventForm: FormGroup): void {
-    console.log(eventForm.value)
-    this.eventService.saveEvent(eventForm.value)
-    this.router.navigate(['/events'])
+    let eventToSave : IEvent = (eventForm.value);
+    eventToSave.location = {
+      address: eventForm.value.address,
+      city: eventForm.value.city,
+      country: eventForm.value.country
+    }
+    this.eventService.saveEvent(eventToSave).subscribe(() => {
+      this.router.navigate(['/events'])
+      this.isDirty = false
+    })
   }
 
 
   validate(field: string){
     this.isDirty = true
-    return this.eventForm.controls[field].invalid
-    && this.eventForm.controls[field].touched;
+    return this.eventForm.controls[field].invalid;
   }
 
   pattern(field: string){

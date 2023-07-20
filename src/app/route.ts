@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router'
 import { Error404Component } from './error/404-component';
-import { EventRouteActivator } from './events/event-detail/event-route.activator.service';
-import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent } from './events/index';
+import { CreateEventComponent, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent, EventResolverService } from './events/index';
 
 export const appRoutes: Routes = [
   //importante l'ordine delle routes
@@ -10,8 +9,7 @@ export const appRoutes: Routes = [
   { path: 'events', component: EventsListComponent,
     resolve: {events: EventListResolverService} },
     //resolve per caricare i dati prima di caricare il componente
-  { path: 'events/:id', component: EventDetailComponent,
-    canActivate: [EventRouteActivator] },
+  { path: 'events/:id', component: EventDetailComponent, resolve: {event: EventResolverService} },
   { path: '404', component: Error404Component},
   {
     path: 'user',

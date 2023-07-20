@@ -1,3 +1,4 @@
+import { LocationValidator } from './events/shared/location-validator.directory';
 import { VoterService } from './events/shared/voter.service';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { window } from 'rxjs';
@@ -12,14 +13,15 @@ import { SimpleModalComponent } from './common/simple-modal.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { Error404Component } from './error/404-component';
-import { EventRouteActivator } from './events/event-detail/event-route.activator.service';
-import { CreateEventComponent, DurationPipe, EventListResolverService, EventThumbnailComponent, EventsListComponent, EventDetailComponent, CreateSessionComponent, SessionListComponent} from './events/index';
+import { CreateEventComponent, DurationPipe, EventListResolverService, EventThumbnailComponent, EventResolverService,
+  EventsListComponent, EventDetailComponent, CreateSessionComponent, SessionListComponent} from './events/index';
 import { AuthService } from './user/auth.service';
 import { LoginComponent } from './user/login.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { FooterComponent } from './welcome/footer.component';
 import { UpvoteComponent } from './events/event-detail/upvote.component';
+import { HttpClientModule } from '@angular/common/http'
 
 declare let toastr: Toastr
 declare let jQuery: Object
@@ -42,23 +44,25 @@ declare let jQuery: Object
     SimpleModalComponent,
     ModalTriggerDirective,
     UpvoteComponent,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr }, //inietto il mio servizio con un oggetto
-    { provide: EventRouteActivator, useClass: EventRouteActivator }, //inietto il mio servizio con una classe
     { provide: JQUERY_TOKEN, useValue: jQuery }, //inietto il mio servizio con un oggetto
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
     }, //forma prolissa, ma utile per funzioni in route
     EventListResolverService,
+    EventResolverService,
     AuthService,
     VoterService,
   ],

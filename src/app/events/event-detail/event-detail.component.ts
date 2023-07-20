@@ -21,9 +21,10 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit(){
-    this.route.params.forEach((params) => {
-      this.event = this.eventService.getEvent(+params['id']) //shorthand conversion
-      this.addMode = false
+    this.route.data.forEach((data) => {
+        this.addMode = false
+        this.event = data['event']
+        console.log(this.event)
     })
   }
 
@@ -35,7 +36,7 @@ export class EventDetailComponent implements OnInit {
     const nextId = Math.max.apply(null, this.event!.sessions!.map(s => s.id))
     session.id = nextId + 1
     this.event!.sessions!.push(session)
-    this.eventService.updateEvent(this.event!)
+    this.eventService.saveEvent(this.event!).subscribe()
     this.addMode = false
   }
 

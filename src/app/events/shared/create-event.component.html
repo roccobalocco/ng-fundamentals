@@ -1,7 +1,7 @@
-<div>
+<div class="row">
   <h1>Create a new Event</h1>
   <hr>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <form [formGroup] ="eventForm"
       #newEventForm = "ngForm"
       novalidate
@@ -13,7 +13,7 @@
         <label for="name">Name:</label>
         <em *ngIf="validate('name')">required</em>
         <em *ngIf="validate('name') && pattern('name')">must start with a letter</em>
-        <input [(ngModel)]="newEvent.name" formControlName="name" name="name"
+        <input formControlName="name" name="name"
           id="name" type="text" class="form-control" placeholder="Name..."
           />
       </div>
@@ -23,7 +23,7 @@
         ">
         <label for="date">Date:</label>
         <em *ngIf="validate('date')">required</em>
-        <input [(ngModel)]="newEvent.date" formControlName="date" name="date"
+        <input formControlName="date" name="date"
           id="date" type="text" class="form-control" placeholder="dd/mm/yyyy..."
           />
       </div>
@@ -33,7 +33,7 @@
         ">
         <label for="time">Time:</label>
         <em *ngIf="validate('time')">required</em>
-        <input [(ngModel)]="newEvent.time" formControlName="time" name="time"
+        <input formControlName="time" name="time"
           id="time" type="text" class="form-control" placeholder="00:00 am/pm..."
           />
       </div>
@@ -43,51 +43,46 @@
         ">
         <label for="price">Price:</label>
         <em *ngIf="validate('price')">required</em>
-        <input [(ngModel)]="newEvent.price" formControlName="price" name="price"
+        <input formControlName="price" name="price"
           id="price" type="number" class="form-control" placeholder="Price..."
           />
       </div>
 
-      <div class="form-group"
-        [ngClass]="
-          { 'error': eventForm.invalid && validate('address') }
-        ">
-        <label for="address">Address:</label>
-        <em *ngIf="validate('address')">required</em>
-        <em *ngIf="validate('address') && pattern('address')">must start with a letter</em>
-        <input [(ngModel)]="newEvent.location!.address" formControlName="address" name="address"
-          id="address" type="text" class="form-control" placeholder="Address..."
-          />
-      </div>
-      <div class="form-group"
-        [ngClass]="
-          { 'error': eventForm.invalid && validate('city') }
-        ">
-        <label for="city">City:</label>
-        <em *ngIf="validate('city')">required</em>
-        <em *ngIf="validate('city') && pattern('city')">must start with a letter</em>
-        <input [(ngModel)]="newEvent.location!.city" formControlName="city" name="city"
-          id="city" type="text" class="form-control" placeholder="City..."
-          />
-      </div>
-      <div class="form-group"
-        [ngClass]="
-          { 'error': eventForm.invalid && validate('city') }
-        ">
-        <label for="country">Country:</label>
-        <em *ngIf="validate('country')">required</em>
-        <em *ngIf="validate('country') && pattern('country')">must start with a letter</em>
-        <input [(ngModel)]="newEvent.location!.country" formControlName="country" name="country"
-          id="country" type="text" class="form-control" placeholder="Country..."
-          />
+      <div validateLocation class="row container">
+        <div class="form-group col-md-6"
+          [ngClass]="
+            { 'error': eventForm.invalid && validate('address') }
+          ">
+          <label for="address">Address:</label>
+          <input formControlName="address" name="address"
+            id="address" type="text" class="form-control" placeholder="Address..."
+            />
+        </div>
+        <div class="form-group col-md-6"
+          [ngClass]="
+            { 'error': eventForm.invalid && validate('city') }
+          ">
+          <label for="city">City:</label>
+          <input formControlName="city" name="city"
+            id="city" type="text" class="form-control" placeholder="City..."
+            />
+        </div>
+        <div class="form-group"
+          [ngClass]="
+            { 'error': eventForm.invalid && validate('city') }
+          ">
+          <label for="country">Country:</label>
+          <input formControlName="country" name="country"
+            id="country" type="text" class="form-control" placeholder="Country..."
+            />
+        </div>
       </div>
       <div class="form-group"
         [ngClass]="
           { 'error': eventForm.invalid && validate('onlineUrl') }
         ">
         <label for="onlineUrl">Online URL:</label>
-        <em *ngIf="validate('onlineUrl')">required</em>
-        <input [(ngModel)]="newEvent.onlineUrl" formControlName="onlineUrl" name="onlineUrl"
+        <input formControlName="onlineUrl" name="onlineUrl"
           id="onlineUrl" type="text" class="form-control" placeholder="onlineUrl..."
           />
       </div>
@@ -98,7 +93,7 @@
         <label for="imageUrl">Image URL:</label>
         <em *ngIf="validate('imageUrl')">required</em>
         <em *ngIf="validate('imageUrl') && pattern('imageUrl')">must start with a letter</em>
-        <input [(ngModel)]="newEvent.imageUrl" formControlName="imageUrl"
+        <input formControlName="imageUrl"
           pattern=".*\/.*.(png|jpg)" name="imageUrl"
           id="imageUrl" type="text" class="form-control" placeholder="Image URL..."
           />
@@ -109,5 +104,8 @@
         [disabled]="eventForm.invalid">Save</button>
       <button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
     </form>
+  </div>
+  <div class="col-md-6">
+
   </div>
 </div>
