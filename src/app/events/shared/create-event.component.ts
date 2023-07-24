@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, NgModelGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IEvent } from './event.model';
 import { Router } from '@angular/router';
 import { EventService } from './event.service';
@@ -51,7 +51,7 @@ export class CreateEventComponent{
   }
 
   createEvent(eventForm: FormGroup): void {
-    let eventToSave : IEvent = (eventForm.value);
+    const eventToSave : IEvent = (eventForm.value);
     eventToSave.location = {
       address: eventForm.value.address,
       city: eventForm.value.city,

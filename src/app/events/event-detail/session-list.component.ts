@@ -39,7 +39,7 @@ export class SessionListComponent implements OnChanges{
       this.filteredSessions.sort(sortByValueDesc)
   }
   toggleVote(session: ISession): void {
-    var user = this.authService.currentUser?.userName
+    const user = this.authService.currentUser?.userName
     if(this.userHasVoted(session))
       this.voterService.deleteVoter(this.eventId, session, user!)
     else
@@ -53,6 +53,7 @@ export class SessionListComponent implements OnChanges{
     return this.authService.isAuthenticated()
   }
   userHasVoted(session: ISession): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
     return this.voterService.userHasVoted(session, this.authService.currentUser?.userName!)
   }
 }

@@ -17,6 +17,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router, @Inject(TOASTR_TOKEN) private toastr: Toastr) {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   login(formValues: any){
     this.authService.loginUser(
       formValues.userName,

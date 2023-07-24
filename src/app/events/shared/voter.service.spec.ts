@@ -17,7 +17,7 @@ describe('VoterService Test', () => {
   describe('deleteVoter', () => {
 
     it('Should be removing the vore form the list of voters', () => {
-      var session = { id: 6, voters: ['joe', 'john']}
+      const session = { id: 6, voters: ['joe', 'john']}
 
       mockHttp.delete.and.returnValue(of(false))
 
@@ -28,7 +28,7 @@ describe('VoterService Test', () => {
     })
 
     it('Should call http.delete with the right URL', () => {
-      var session = { id: 6, voters: ['joe', 'john']}
+      const session = { id: 6, voters: ['joe', 'john']}
 
       mockHttp.delete.and.returnValue(of(false))
 
@@ -41,7 +41,7 @@ describe('VoterService Test', () => {
   describe('addVoter', () => {
 
     it('Should call http.post with the right URL', () => {
-      var session = { id: 6, voters: ['john']}
+      const session = { id: 6, voters: ['john']}
 
       mockHttp.post.and.returnValue(of(false))
 

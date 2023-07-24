@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../user/auth.service';
-import { IEvent, ISession } from '../events';
+import { IEvent} from '../events';
 import { EventService } from '../events/shared/event.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { EventService } from '../events/shared/event.service';
 })
 export class WelcomeComponent {
   searchTerm?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   foundSessions?: any[]
   foundEvents?: IEvent[]
 

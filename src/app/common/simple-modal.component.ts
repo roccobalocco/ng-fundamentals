@@ -29,6 +29,7 @@ export class SimpleModalComponent{
   @Input() closeOnBodyClick?: string
   @ViewChild('modalContainer') containerEl?: ElementRef
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(@Inject(JQUERY_TOKEN) private $ : any) {
   }
 

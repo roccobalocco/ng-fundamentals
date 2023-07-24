@@ -13,7 +13,7 @@ describe('SessionListComponent', () => {
 
   describe('ngOnChanges', () => {
     it('Should filter the session correctly with intermediate level', () =>{
-      let level = 'intermediate'
+      const level = 'intermediate'
       component.sessions = <ISession[]> [
         {name: 'session 1', level: 'intermediate', voters: {}},
         {name: 'session 2', level: 'intermediate', voters: {}},

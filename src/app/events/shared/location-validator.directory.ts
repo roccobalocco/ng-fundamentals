@@ -7,18 +7,19 @@ import { FormGroup, Validator,  NG_VALIDATORS } from "@angular/forms";
 })
 export class LocationValidator implements Validator{
 
-  validate(formGroup: FormGroup): {[key:string]:any} | null{
-    let addressControl = formGroup.controls['address']
-    let cityControl = formGroup.controls['city']
-    let countryControl = formGroup.controls['country']
-    let onlineUrlControl = (<FormGroup>formGroup.root).controls['onlineUrl']
+  validate(formGroup: FormGroup): {[key:string]:unknown} | null{
+    const addressControl = formGroup.controls['address']
+    const cityControl = formGroup.controls['city']
+    const countryControl = formGroup.controls['country']
+    const onlineUrlControl = (<FormGroup>formGroup.root).controls['onlineUrl']
 
     if((addressControl && addressControl.value && cityControl && cityControl.value && countryControl && countryControl.value) || (onlineUrlControl && onlineUrlControl.value))
       return null
     return {validateLocation: false}
   }
 
-  registerOnValidatorChange?(fn: () => void): void {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  registerOnValidatorChange?(_fn: () => void): void {
     throw new Error("Method not implemented.");
   }
 

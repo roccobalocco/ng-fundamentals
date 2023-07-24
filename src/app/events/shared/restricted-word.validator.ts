@@ -1,10 +1,11 @@
 import { FormControl } from "@angular/forms"
 
 export function restrictedWords(words: string[]) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (control : FormControl) : {[key: string]: any} | null => {
     if (!words) return null
 
-    var invalidWords = words
+    const invalidWords = words
       .map(w => control.value.includes(w) ? w : null)
       .filter(w => w != null)
 

@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit{
     this.router.navigate(['events']);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   saveProfile(formValues: any){
     if(this.profileForm.valid){ //validazione lato client
       this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(() => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from "@angular/core"
 import { Observable, of, catchError } from "rxjs"
 import { IEvent, ISession } from "./event.model";
@@ -11,7 +12,7 @@ export class EventService{
   }
 
   public handleError<T> (operation = 'operation', result?: T){
-    return (error: any): Observable<T> => {
+    return (error: unknown): Observable<T> => {
       console.error(error)
       return of(result as T)
     }
@@ -28,7 +29,7 @@ export class EventService{
   }
 
   saveEvent(event: IEvent) {
-    let options = { headers: new HttpHeaders({'Content-Type': 'application/json'})}
+    const options = { headers: new HttpHeaders({'Content-Type': 'application/json'})}
     return this.http.post<IEvent>('/api/events', event, options)
       .pipe(catchError(this.handleError<IEvent>('saveEvent')))
   }

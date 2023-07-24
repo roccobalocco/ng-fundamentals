@@ -2,7 +2,7 @@ import { LocationValidator } from './events/shared/location-validator.directory'
 import { VoterService } from './events/shared/voter.service';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { window } from 'rxjs';
-import { NgModule, PipeTransform } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EventsAppComponent } from './events-app.component';
@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { UserResolver } from './events/shared/user-resolver.service';
 
 declare let toastr: Toastr
-declare let jQuery: Object
+declare let jQuery: object
 
 @NgModule({
   declarations: [

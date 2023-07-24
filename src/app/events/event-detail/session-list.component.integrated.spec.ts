@@ -2,11 +2,9 @@ import { AuthService } from "src/app/user/auth.service"
 import { VoterService } from "../shared/voter.service"
 import { SessionListComponent } from "./session-list.component"
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { Component, DebugElement, Input, NO_ERRORS_SCHEMA } from "@angular/core"
+import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core"
 import { ISession } from "../shared/event.model"
 import { DurationPipe } from "../shared/duration.pipe"
-import { UpvoteComponent } from "./upvote.component"
-import { CollapsibleWellComponent } from "src/app/common/collapsible-well.component"
 import { By } from "@angular/platform-browser"
 
 describe('SessionListComponent', () => {

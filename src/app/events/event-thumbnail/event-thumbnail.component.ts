@@ -16,11 +16,12 @@ import { IEvent } from '../shared/event.model';
   `]
 })
 export class EventThumbnailComponent {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() event: IEvent | any //sarà passato da un altro componente
   @Output() eventClick = new EventEmitter()
   someProperty: string = 'some value in child component used as a variable'
 
-  getStartPriceStyle(): any{
+  getStartPriceStyle(): object{
     //funzione atta a sostiuire la roba dentro l'espressione di ngClass
     if (this.event.price > 600)
       return {color: 'red'}

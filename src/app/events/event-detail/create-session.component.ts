@@ -37,8 +37,9 @@ export class CreateSessionComponent{
     this.cancelAddSessions.emit()
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   saveSession(formValues: any){
-    let session : ISession = {
+    const session : ISession = {
       name: formValues.name,
       duration: +formValues.duration, //conversione numerica
       level: formValues.level,
