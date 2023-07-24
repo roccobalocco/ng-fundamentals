@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AuthService } from './user/auth.service';
+import { Toastr, TOASTR_TOKEN } from './common/toastr.service';
 
 @Component({
   selector: 'events-app-root',
@@ -7,5 +9,12 @@ import { Component } from '@angular/core';
   `,
 })
 export class EventsAppComponent {
-  title = 'ng-fundamentals';
+  constructor(private authService: AuthService, @Inject(TOASTR_TOKEN) private toastr: Toastr){
+
+  }
+
+  ngOnInit(){
+    this.authService.checkAuthenticationStatus()
+  }
+
 }

@@ -22,6 +22,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { FooterComponent } from './welcome/footer.component';
 import { UpvoteComponent } from './events/event-detail/upvote.component';
 import { HttpClientModule } from '@angular/common/http'
+import { UserResolver } from './events/shared/user-resolver.service';
 
 declare let toastr: Toastr
 declare let jQuery: Object
@@ -44,7 +45,7 @@ declare let jQuery: Object
     SimpleModalComponent,
     ModalTriggerDirective,
     UpvoteComponent,
-    LocationValidator
+    LocationValidator,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +66,7 @@ declare let jQuery: Object
     EventResolverService,
     AuthService,
     VoterService,
+    UserResolver
   ],
   bootstrap: [EventsAppComponent, WelcomeComponent, FooterComponent]
 })

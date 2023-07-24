@@ -24,7 +24,6 @@ export class EventDetailComponent implements OnInit {
     this.route.data.forEach((data) => {
         this.addMode = false
         this.event = data['event']
-        console.log(this.event)
     })
   }
 

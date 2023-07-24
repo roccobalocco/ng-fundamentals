@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "bootstrap": "^5.3.0",
+    "eslint": "^8.45.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.0",
     "ngf-server": "^1.0.3",

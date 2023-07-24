@@ -64,6 +64,6 @@
     </div>
   </div>
   <hr class="hr hr-blurry" />
-  <session-list *ngIf="!addMode" [sessions]="event!.sessions" [filterBy]="filterBy" [sortBy]="sortBy"></session-list>
+  <session-list [eventId]="event?.id!" *ngIf="!addMode" [sessions]="event!.sessions" [filterBy]="filterBy" [sortBy]="sortBy"></session-list>
   <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSessions)="cancelAddSessions()"></create-session>
 </div>

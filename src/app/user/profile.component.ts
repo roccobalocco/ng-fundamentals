@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit{
     this.lastName = new FormControl(
       this.authService.currentUser?.lastName,
       [Validators.required, Validators.pattern('[a-zA-Z].*')]);
-    console.log('ngOnInit' + this.firstName.value)
     this.profileForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -47,9 +46,10 @@ export class ProfileComponent implements OnInit{
 
   saveProfile(formValues: any){
     if(this.profileForm.valid){ //validazione lato client
-      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.toastr.success(this.authService.currentUser?.firstName + ' ' + this.authService.currentUser?.lastName + ' profile saved');
-      this.router.navigate(['events']);
+      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(() => {
+        this.toastr.success(this.authService.currentUser?.firstName + ' ' + this.authService.currentUser?.lastName + ' profile saved');
+        this.router.navigate(['events']);
+      })
     }
   }
 
