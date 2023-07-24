@@ -10,7 +10,7 @@ import { EventService } from './events/shared/event.service';
 import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { JQUERY_TOKEN } from './common/jquery.service';
 import { SimpleModalComponent } from './common/simple-modal.component';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { Error404Component } from './error/404-component';
 import { CreateEventComponent, DurationPipe, EventListResolverService, EventThumbnailComponent, EventResolverService,
@@ -49,7 +49,7 @@ declare let jQuery: object
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
